@@ -1,25 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/angelapineros/Projects/PMTool/PMTool/PMTool.csproj": {}
+    "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj": {}
   },
   "projects": {
-    "/Users/angelapineros/Projects/PMTool/PMTool/PMTool.csproj": {
+    "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/angelapineros/Projects/PMTool/PMTool/PMTool.csproj",
+        "projectUniqueName": "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj",
         "projectName": "PMTool",
-        "projectPath": "/Users/angelapineros/Projects/PMTool/PMTool/PMTool.csproj",
-        "packagesPath": "/Users/angelapineros/.nuget/packages/",
-        "outputPath": "/Users/angelapineros/Projects/PMTool/PMTool/obj/",
+        "projectPath": "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj",
+        "packagesPath": "C:\\Users\\Yunfei\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/angelapineros/.config/NuGet/NuGet.Config"
+          "C:\\Users\\Yunfei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,6 +40,22 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -53,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
