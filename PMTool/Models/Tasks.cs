@@ -15,7 +15,6 @@ namespace PMTool.Models
         public int? UserIdFk { get; set; }
         public string TaskName { get; set; }
         public string TaskDescription { get; set; }
-        public string Test { get; set; }
 
         public virtual Requirements ReqIdFkNavigation { get; set; }
         public virtual User UserIdFkNavigation { get; set; }

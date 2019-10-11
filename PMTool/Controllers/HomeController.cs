@@ -12,15 +12,17 @@ namespace PMTool.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly prj6633t2Context _prj6633T2Context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(prj6633t2Context prj6633T2Context,ILogger<HomeController> logger)
         {
             _logger = logger;
+            _prj6633T2Context = prj6633T2Context;
         }
 
         public IActionResult Index()
-        {
-            return View();
+        {          
+          return View(_prj6633T2Context.Projects.ToList());
         }
 
         public IActionResult Privacy()

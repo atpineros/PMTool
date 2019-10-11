@@ -6,17 +6,15 @@ namespace PMTool.Models
 {
     public partial class prj6633t2Context : DbContext
     {
-        public prj6633t2Context()
-        {
-        }
+
 
         public prj6633t2Context(DbContextOptions<prj6633t2Context> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Effort> Effort { get; set; }
-        public virtual DbSet<Projects> Projects { get; set; }
+        public  DbSet<Effort> Effort { get; set; }
+        public  DbSet<Projects> Projects { get; set; }
         public virtual DbSet<Requirements> Requirements { get; set; }
         public virtual DbSet<Risks> Risks { get; set; }
         public virtual DbSet<Role> Role { get; set; }
@@ -24,14 +22,14 @@ namespace PMTool.Models
         public virtual DbSet<Teams> Teams { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=prj6633t2.cta0myfetzgf.us-east-1.rds.amazonaws.com, 1433;Database=prj6633t2;user ID=admin;Password=ksuswe6633;");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Server=prj6633t2.cta0myfetzgf.us-east-1.rds.amazonaws.com, 1433;Database=prj6633t2;user ID=admin;Password=ksuswe6633;");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -156,8 +154,6 @@ namespace PMTool.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Test).HasMaxLength(50);
 
                 entity.Property(e => e.UserIdFk).HasColumnName("UserID_fk");
 

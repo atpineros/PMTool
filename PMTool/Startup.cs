@@ -25,7 +25,10 @@ namespace PMTool
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<prj6633t2Context>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<prj6633t2Context>(options => {
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
+                });
+            services.AddMvc();
             services.AddControllersWithViews();
         }
 
