@@ -3,12 +3,38 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-@foreach(var items in Model)
-{
-    <h1>@items.PrjName</h1>
-}
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#"><h4>PROJECTS</h4></a></li>
+        </ul>
+        <br>
+        <div class="smallContainer">
+            <div class="activeProjectTxt">
+                <h5>CURRENT ACTIVE PROJECTS</h5>
+            </div>
+            <div class="belowAreCurrentProjectTxt">
+                <h6>Below are all current active projects.</h6>
+            </div>
+            <table class="table table-bordered tableOutside">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Deadline</th>
+                        <th>Project Manager</th>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                    @foreach(var project in Model)
+                    {
+                        <tr>
+                            <td>@project.PrjName</td>
+                            <td>@project.Description</td>
+                            <td>@project.PrjDueDate.ToShortDateString()</td>
+                            <td>@project.PrjMgr</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
