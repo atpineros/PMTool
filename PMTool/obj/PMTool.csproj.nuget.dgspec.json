@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj": {}
+    "C:\\Users\\trail\\Documents\\PMTool-master\\PMTool\\PMTool.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj": {
+    "C:\\Users\\trail\\Documents\\PMTool-master\\PMTool\\PMTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj",
+        "projectUniqueName": "C:\\Users\\trail\\Documents\\PMTool-master\\PMTool\\PMTool.csproj",
         "projectName": "PMTool",
-        "projectPath": "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\PMTool.csproj",
-        "packagesPath": "C:\\Users\\Yunfei\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yunfei\\Desktop\\SchoolWork\\Fall 2019\\Software Management\\Project\\PMTool\\PMTool\\obj\\",
+        "projectPath": "C:\\Users\\trail\\Documents\\PMTool-master\\PMTool\\PMTool.csproj",
+        "packagesPath": "C:\\Users\\trail\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\trail\\Documents\\PMTool-master\\PMTool\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Yunfei\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\trail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
@@ -56,6 +58,14 @@
               "version": "[3.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.0.0, )"
             }
