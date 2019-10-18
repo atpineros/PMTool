@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<Projects>
 @{
-    Layout = "~/views/shared/_AdminLayout.cshtml";
+   
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="container">
+    
         <ul class="nav nav-tabs">
             <li class="active"><a href="#"><h4>PROJECTS</h4></a></li>
         </ul>
         <br>
-        <div class="smallContainer">
+        @*<div class="smallContainer">*@
             <div class="activeProjectTxt">
                 <h5>CURRENT ACTIVE PROJECTS</h5>
             </div>
             <div class="belowAreCurrentProjectTxt">
                 <h6>Below are all current active projects.</h6>
             </div>
-            <table class="table table-bordered tableOutside">
+            <table class="table table-bordered tableOutside col-lg-12">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -37,5 +37,5 @@
                     }
                 </tbody>
             </table>
-        </div>
-    </div>
+        @*</div>*@
+   
