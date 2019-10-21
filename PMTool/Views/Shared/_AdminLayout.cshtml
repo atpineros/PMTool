@@ -9,8 +9,22 @@
     <meta name="author" content="">
 
     <title>Simple Sidebar - Start Bootstrap Template</title>
-    <link rel="stylesheet" href="~/css/Navbar.css" />
-    <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.min.css" />
+    <environment include="Development">
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/Navbar.css" />
+        <link rel="stylesheet" href="~/css/Home.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Navbar.css" />
+        <link rel="stylesheet" href="~/css/Home.css" />
+    </environment>
 
 </head>
 <body>
@@ -18,18 +32,24 @@
         <div>
             <a asp-controller="Home" asp-action="Index">PMTool</a>
         </div>
-        <div>
+        <div class="text-center">
             <p>
                 MAIN NAVIGATION
             </p>
         </div>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
+        <a asp-controller="Home" asp-action="Index">HOME</a>
+        <a asp-controller="Projects" asp-action="Index">PROJECT</a>
+        <a href="#">REQUIREMENTS</a>
+        <a href="#">ASSIGNMENTS</a>
+        <a href="#">REPORTING</a>
+        <div class="text-center">
+            <p>
+                ADMIN
+            </p>
+        </div>
     </div>
     <div class="offset-md-2">
-        <h3 style="margin-left:70px;">HOME</h3>
+        <h3 style="margin-left:70px;">@ViewData["Title"]</h3>
     </div>
     <!-- /#page-content-wrapper -->
     <div class="container">
@@ -43,14 +63,13 @@
             &copy; 2019 - PMTool - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/vendor/jquery/jquery.min.js" asp-append-version="true"></script>
-    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
     @RenderSection("Scripts", required: false)
-    
+
 </body>
 </html>
