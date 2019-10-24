@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using PMTool.Helper;
 using PMTool.Models;
@@ -26,15 +27,21 @@ namespace PMTool.Controllers
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
-                projectViewViewModel.projects = JsonConvert.DeserializeObject<IEnumerable<Projects>>(result);
+                var projectSelectList = JsonConvert.DeserializeObject<IEnumerable<Projects>>(result).Select(a => new SelectListItem
+                {
+                    Text = a.PrjName,
+                    Value = a.ProjId.ToString()
+                });
+                projectViewViewModel.Projects = new SelectList(projectSelectList, "Value", "Text");
             }
+
             return View(projectViewViewModel);
         }
         [HttpPost]
         public IActionResult Index(ProjectViewViewModel projectViewViewModel)
         {
-            var test = projectViewViewModel.SelectedProjectID;
-            var test2 = projectViewViewModel.projects;
+
+            var item = projectViewViewModel.SelectedProjectID;
             return RedirectToAction("Index");
         }
     }

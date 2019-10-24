@@ -21,9 +21,9 @@
 <div class="row">
     <form asp-controller="Projects" asp-action="Index" method="post">
 
-        @Html.LabelFor(m => m.projects, "Projects:")
-        @Html.DropDownListFor(m => m.projects, new SelectList(Model.projects.Select(x => x.PrjName)), "--Select Projects--")
-        @Html.ValidationMessageFor(model => model.projects, "", new { @class = "text-danger" })
+        @Html.LabelFor(m => m.Projects, "Projects:")
+        @Html.DropDownListFor(m => m.SelectedProjectID,Model.Projects, "--Select Projects--")
+        @Html.ValidationMessageFor(model => model.Projects, "", new { @class = "text-danger" })
         <input type="submit" name="name" value="Submit" />
     </form>
 </div>
