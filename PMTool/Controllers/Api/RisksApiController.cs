@@ -27,51 +27,59 @@ namespace PMTool.Controllers.Api
             return await _context.Risks.ToListAsync();
         }
 
-        // GET: api/Risks/5
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<Risks>> GetRisks(int id)
+        public async Task<ActionResult<IEnumerable<Risks>>> GetRisksbyProjectID(int id)
         {
-            var risks = await _context.Risks.FindAsync(id);
-
-            if (risks == null)
-            {
-                return NotFound();
-            }
-
-            return risks;
+            return await _context.Risks.Where(x => x.ProjIdFk == id).ToListAsync();
         }
+
+
+        // GET: api/Risks/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Risks>> GetRisks(int id)
+        //{
+        //    var risks = await _context.Risks.FindAsync(id);
+
+        //    if (risks == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return risks;
+        //}
 
         // PUT: api/Risks/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRisks(int id, Risks risks)
-        {
-            if (id != risks.RiskId)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutRisks(int id, Risks risks)
+        //{
+        //    if (id != risks.RiskId)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(risks).State = EntityState.Modified;
+        //    _context.Entry(risks).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RisksExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!RisksExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Risks
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
@@ -101,9 +109,5 @@ namespace PMTool.Controllers.Api
             return risks;
         }
 
-        private bool RisksExists(int id)
-        {
-            return _context.Risks.Any(e => e.RiskId == id);
-        }
     }
 }

@@ -29,9 +29,9 @@ namespace PMTool.Controllers.Api
 
         // GET: api/Teams/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Teams>> GetTeams(int id)
+        public async Task<ActionResult<IEnumerable<Teams>>> GetTeams(int id)
         {
-            var teams = await _context.Teams.FindAsync(id);
+            var teams = await _context.Teams.Where(x=>x.PriIdFk ==id).ToListAsync();
 
             if (teams == null)
             {

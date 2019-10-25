@@ -38,11 +38,61 @@ namespace PMTool.Controllers
             return View(projectViewViewModel);
         }
         [HttpPost]
-        public IActionResult Index(ProjectViewViewModel projectViewViewModel)
+        public async Task<IActionResult> Index(ProjectViewViewModel projectViewViewModel)
         {
-
-            var item = projectViewViewModel.SelectedProjectID;
-            return RedirectToAction("Index");
+            var selectedProjID = int.Parse(projectViewViewModel.SelectedProjectID);
+            projectViewViewModel.Project = await GetProjectByProjectID(selectedProjID);
+            projectViewViewModel.Risks = await GetRisksByProjectID(selectedProjID);
+            projectViewViewModel.Users = await GetTeamsByProjectID(selectedProjID);
+            return RedirectToAction("Index", projectViewViewModel);
         }
+
+        public async Task<Projects> GetProjectByProjectID(int projectID)
+        {
+            HttpClient client = _api.Initial();
+            HttpResponseMessage res = await client.GetAsync($"api/projectapi/{projectID}");
+            var results = new Projects();
+            if (res.IsSuccessStatusCode)
+            {
+                var data = res.Content.ReadAsStringAsync().Result;
+                results = JsonConvert.DeserializeObject<Projects>(data);
+
+            }
+            return results;
+        }
+
+        public async Task<IEnumerable<Risks>> GetRisksByProjectID(int projectId)
+        {
+            HttpClient client = _api.Initial();
+            HttpResponseMessage res = await client.GetAsync($"api/risksapi/{projectId}");
+            IEnumerable<Risks> results = new List<Risks>();
+            if (res.IsSuccessStatusCode)
+            {
+                var data = res.Content.ReadAsStringAsync().Result;
+                results = JsonConvert.DeserializeObject<IEnumerable<Risks>>(data);
+                
+            }
+            return results;
+        }
+
+        public async Task<IEnumerable<User>> GetTeamsByProjectID(int projectId)
+        {
+            HttpClient client = _api.Initial();
+            HttpResponseMessage res = await client.GetAsync($"api/teamsapi/{projectId}");
+            IEnumerable<User> result = new List<User>();
+            if (res.IsSuccessStatusCode)
+            {
+                var data = res.Content.ReadAsStringAsync().Result;
+                var selectedTeamID = JsonConvert.DeserializeObject<IEnumerable<Teams>>(data).Select(x=>x.UserIdFk).ToList();
+                result = GetUsersByUserIDs(selectedTeamID);
+            }
+            return result;
+        }
+
+        public IEnumerable<User> GetUsersByUserIDs(List<int?> TeamID)
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }
