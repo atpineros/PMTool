@@ -10,9 +10,10 @@ namespace PMTool.Models.ViewModels
     {
         public string SelectedProjectID { get; set; }
         public SelectList Projects { get; set; }
-        public IEnumerable<User> Users { get; set; }
+        public List<User> Users { get; set; }
         public IEnumerable<Risks> Risks { get; set; }
         public Projects Project { get; set; }
+        public List<Role> Roles { get; set; }
 
     }
 }

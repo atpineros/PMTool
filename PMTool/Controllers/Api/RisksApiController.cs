@@ -49,37 +49,6 @@ namespace PMTool.Controllers.Api
             return risks;
         }
 
-        // PUT: api/Risks/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutRisks(int id, Risks risks)
-        //{
-        //    if (id != risks.RiskId)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(risks).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!RisksExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
 
         // POST: api/Risks
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for

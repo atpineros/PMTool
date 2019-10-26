@@ -21,9 +21,28 @@ namespace PMTool.Controllers
         {
            
             ProjectViewViewModel projectViewViewModel = new ProjectViewViewModel();
+            projectViewViewModel.Projects = GetAllProjects().Result.Projects;
+            return View(projectViewViewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(ProjectViewViewModel projectViewViewModel)
+        {
+            
+            var selectedProjID = int.Parse(projectViewViewModel.SelectedProjectID);
+            projectViewViewModel.Projects = GetAllProjects().Result.Projects;
+            projectViewViewModel.Project = await GetProjectInfoByProjectID(selectedProjID);
+            projectViewViewModel.Risks = await GetRisksByProjectID(selectedProjID);
+            Task<ProjectViewViewModel> result = GetTeamsByProjectID(selectedProjID);
+            projectViewViewModel.Users = result.Result.Users;
+            projectViewViewModel.Roles = result.Result.Roles;          
+            return View("Index", projectViewViewModel);
+        }
+
+        public async Task<ProjectViewViewModel> GetAllProjects()
+        {
             HttpClient client = _api.Initial();
             HttpResponseMessage res = await client.GetAsync("api/projectsapi");
-
+            var projectViewViewModel = new ProjectViewViewModel();
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;
@@ -34,23 +53,12 @@ namespace PMTool.Controllers
                 });
                 projectViewViewModel.Projects = new SelectList(projectSelectList, "Value", "Text");
             }
-
-            return View(projectViewViewModel);
+            return projectViewViewModel;
         }
-        [HttpPost]
-        public async Task<IActionResult> Index(ProjectViewViewModel projectViewViewModel)
-        {
-            var selectedProjID = int.Parse(projectViewViewModel.SelectedProjectID);
-            projectViewViewModel.Project = await GetProjectByProjectID(selectedProjID);
-            projectViewViewModel.Risks = await GetRisksByProjectID(selectedProjID);
-            projectViewViewModel.Users = await GetTeamsByProjectID(selectedProjID);
-            return RedirectToAction("Index", projectViewViewModel);
-        }
-
-        public async Task<Projects> GetProjectByProjectID(int projectID)
+        public async Task<Projects> GetProjectInfoByProjectID(int projectID)
         {
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/projectapi/{projectID}");
+            HttpResponseMessage res = await client.GetAsync($"api/projectsapi/{projectID}");
             var results = new Projects();
             if (res.IsSuccessStatusCode)
             {
@@ -75,15 +83,15 @@ namespace PMTool.Controllers
             return results;
         }
 
-        public async Task<IEnumerable<User>> GetTeamsByProjectID(int projectId)
+        public async Task<ProjectViewViewModel> GetTeamsByProjectID(int projectId)
         {
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/teamsapi/users/{projectId}");
-            IEnumerable<User> result = new List<User>();
+            HttpResponseMessage res = await client.GetAsync($"api/teamsapi/GetTeamByProjectID/{projectId}");
+            ProjectViewViewModel result = new ProjectViewViewModel();
             if (res.IsSuccessStatusCode)
             {
                 var data = res.Content.ReadAsStringAsync().Result;
-                result = JsonConvert.DeserializeObject<IEnumerable<User>>(data).ToList();             
+                result = JsonConvert.DeserializeObject<ProjectViewViewModel>(data);             
             }
             return result;
         }

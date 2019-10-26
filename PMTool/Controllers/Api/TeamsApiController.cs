@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PMTool.Models;
+using PMTool.Models.ViewModels;
 
 namespace PMTool.Controllers.Api
 {
@@ -42,12 +43,27 @@ namespace PMTool.Controllers.Api
         }
 
         
-        [HttpGet("users/{id}")]
-        public async Task<List<User>> GetUserByProjectID(int id)
-        
+        [HttpGet("GetTeamByProjectID/{id}")]
+        public async Task<ProjectViewViewModel> GetTeamByProjectID(int id)        
         {
-            var listofUsersbyProjectID = await _context.User.Where(x => x.TeamId == id).ToListAsync();            
-            return listofUsersbyProjectID;
+            ProjectViewViewModel projectViewViewModel = new ProjectViewViewModel();
+            var listOfUsers = new List<User>();
+            var listOfRoles = new List<Role>();
+            var UsersByProjectID = from t in _context.Teams
+                                         join u in _context.User on t.UserIdFk equals u.UserId
+                                         join r in _context.Role on t.RoleIdFk equals r.RoleId
+                                         where t.PriIdFk == id
+                                         select new { u.Fname, u.Lname, r.RoleName };
+            var ListOfUsersByProjectID = await UsersByProjectID.ToListAsync();
+            foreach ( var item in ListOfUsersByProjectID)
+            {
+                listOfUsers.Add(new User { Fname = item.Fname, Lname = item.Lname});
+                listOfRoles.Add( new Role { RoleName = item.RoleName });
+            }
+            projectViewViewModel.Roles = listOfRoles;
+            projectViewViewModel.Users = listOfUsers;
+            
+            return projectViewViewModel;
 
         }
         // PUT: api/Teams/5
