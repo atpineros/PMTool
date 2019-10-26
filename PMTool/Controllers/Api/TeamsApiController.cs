@@ -41,6 +41,16 @@ namespace PMTool.Controllers.Api
             return teams;
         }
 
+        
+        [HttpGet("users/{id}")]
+        public async Task<List<Teams>> GetUserByProjectID(int id)
+        {
+            var ListofUsersInTeams = await _context.Teams.Where(x => x.PriIdFk == id).ToListAsync();
+            var users = _context.Teams.Where(x => x.PriIdFk == id).Include(x => x.UserIdFkNavigation).Select(User).ToList();
+            
+            return users;
+
+        }
         // PUT: api/Teams/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
