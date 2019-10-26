@@ -6,7 +6,9 @@ namespace PMTool.Models
 {
     public partial class prj6633t2Context : DbContext
     {
-
+        public prj6633t2Context()
+        {
+        }
 
         public prj6633t2Context(DbContextOptions<prj6633t2Context> options)
             : base(options)
@@ -211,6 +213,8 @@ namespace PMTool.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TeamId).HasColumnName("TeamID");
             });
 
             OnModelCreatingPartial(modelBuilder);

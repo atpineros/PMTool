@@ -43,12 +43,11 @@ namespace PMTool.Controllers.Api
 
         
         [HttpGet("users/{id}")]
-        public async Task<List<Teams>> GetUserByProjectID(int id)
+        public async Task<List<User>> GetUserByProjectID(int id)
+        
         {
-            var ListofUsersInTeams = await _context.Teams.Where(x => x.PriIdFk == id).ToListAsync();
-            var users = _context.Teams.Where(x => x.PriIdFk == id).Include(x => x.UserIdFkNavigation).Select(User).ToList();
-            
-            return users;
+            var listofUsersbyProjectID = await _context.User.Where(x => x.TeamId == id).ToListAsync();            
+            return listofUsersbyProjectID;
 
         }
         // PUT: api/Teams/5

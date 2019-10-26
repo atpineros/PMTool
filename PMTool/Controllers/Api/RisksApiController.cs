@@ -28,26 +28,26 @@ namespace PMTool.Controllers.Api
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("risks/{id}")]
         public async Task<ActionResult<IEnumerable<Risks>>> GetRisksbyProjectID(int id)
         {
             return await _context.Risks.Where(x => x.ProjIdFk == id).ToListAsync();
         }
 
 
-        // GET: api/Risks/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Risks>> GetRisks(int id)
-        //{
-        //    var risks = await _context.Risks.FindAsync(id);
+        //GET: api/Risks/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Risks>> GetRisks(int id)
+        {
+            var risks = await _context.Risks.FindAsync(id);
 
-        //    if (risks == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (risks == null)
+            {
+                return NotFound();
+            }
 
-        //    return risks;
-        //}
+            return risks;
+        }
 
         // PUT: api/Risks/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for

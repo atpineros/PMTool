@@ -19,7 +19,7 @@ namespace PMTool.Controllers
         
         public async Task<IActionResult> Index()
         {
-            //List<Projects> project = new List<Projects>();
+           
             ProjectViewViewModel projectViewViewModel = new ProjectViewViewModel();
             HttpClient client = _api.Initial();
             HttpResponseMessage res = await client.GetAsync("api/projectsapi");
@@ -64,7 +64,7 @@ namespace PMTool.Controllers
         public async Task<IEnumerable<Risks>> GetRisksByProjectID(int projectId)
         {
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/risksapi/{projectId}");
+            HttpResponseMessage res = await client.GetAsync($"api/risksapi/risks/{projectId}");
             IEnumerable<Risks> results = new List<Risks>();
             if (res.IsSuccessStatusCode)
             {
@@ -78,21 +78,15 @@ namespace PMTool.Controllers
         public async Task<IEnumerable<User>> GetTeamsByProjectID(int projectId)
         {
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync($"api/teamsapi/{projectId}");
+            HttpResponseMessage res = await client.GetAsync($"api/teamsapi/users/{projectId}");
             IEnumerable<User> result = new List<User>();
             if (res.IsSuccessStatusCode)
             {
                 var data = res.Content.ReadAsStringAsync().Result;
-                var selectedTeamID = JsonConvert.DeserializeObject<IEnumerable<Teams>>(data).Select(x=>x.UserIdFk).ToList();
-                result = GetUsersByUserIDs(selectedTeamID);
+                result = JsonConvert.DeserializeObject<IEnumerable<User>>(data).ToList();             
             }
             return result;
         }
 
-        public IEnumerable<User> GetUsersByUserIDs(List<int?> TeamID)
-        {
-            throw new NotImplementedException();
-        }
-        
     }
 }

@@ -15,6 +15,7 @@ namespace PMTool.Models
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Email { get; set; }
+        public int? TeamId { get; set; }
 
         public virtual ICollection<Tasks> Tasks { get; set; }
         public virtual ICollection<Teams> Teams { get; set; }
