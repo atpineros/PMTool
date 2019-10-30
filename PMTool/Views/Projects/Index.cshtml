@@ -32,12 +32,12 @@
 
 
 <div class="projectInfo">
-    <div class="projectInfoTxt row">
-        PROJECT INFORMATION
+    <div class="activeProjectTxt">
+        <h5>PROJECT INFORMATION</h5>
     </div>
     <div class="row">
         <div class="col-2">
-            Title:
+            <b>Title:</b>
         </div>
         <div class="col-3">
             @if (Model.Project != null)
@@ -46,7 +46,7 @@
             }
         </div>
         <div class="col-2">
-            Project Manager:
+            <b>Project Manager:</b>
         </div>
         <div class="col-3">
             @if (Model.Project != null)
@@ -56,9 +56,9 @@
         </div>
     </div>
     <div class="row">
-        Description:
+        <b>Description:</b>
     </div>
-    <div class="row">
+    <div class="smallContainer">
         <div class="descriptionTxt">
             @if (Model.Project != null)
             {
@@ -68,7 +68,7 @@
     </div>
     <div class="row">
         <div class="projectDueDateTxt col-2">
-            Project Due Date:
+            <b>Project Due Date:</b>
         </div>
         <div class="col-3">
             @if (Model.Project != null)
@@ -77,7 +77,7 @@
             }
         </div>
         <div class="estimatedEffortTxt col-2">
-            Estimated Effort (hr):
+           <b> Estimated Effort (hr):</b>
         </div>
         <div class="col-3">
             @if (Model.Project != null)
@@ -86,27 +86,27 @@
             }
         </div>
     </div>
-    <div class="row projectTeamTxt">
-        PROJECT TEAM
+    <div class="activeProjectTxt">
+        <h5>PROJECT TEAM</h5>
     </div>
  
     <div class="row">
-        <table>
+        <table class="table table-bordered tableOutside col-lg-10">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Role</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-striped">
                 @if (Model.Roles != null && Model.Users != null)
                 {
-                    @for(var i = 0; i<Model.Users.Count; i++)
-                    {                           
+                    @for (var i = 0; i < Model.Users.Count; i++)
+                    {
                         <tr>
                             <td>@Model.Users[i].Fname @Model.Users[i].Lname</td>
                             <td>@Model.Roles[i].RoleName</td>
-                        
+
                         </tr>
                     }
                 }
@@ -114,11 +114,11 @@
         </table>
     </div>
 
-    <div class="row projectRiskTxt">
-         PROJECT RISKS
+    <div class="activeProjectTxt">
+        <h5>PROJECT RISK</h5>
     </div>
     <div class="row">
-        <table>
+        <table class="table table-bordered tableOutside col-lg-10">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -126,10 +126,10 @@
                     <th>Priority</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-striped">
                 @if (Model.Risks != null)
                 {
-                    @foreach(var item in Model.Risks)
+                    @foreach (var item in Model.Risks)
                     {
                         <tr>
                             <td>Missing Title</td>
