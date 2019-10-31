@@ -14,6 +14,7 @@ namespace PMTool.Models.ViewModels
         public IEnumerable<Risks> Risks { get; set; }
         public Projects Project { get; set; }
         public List<Role> Roles { get; set; }
+       
 
     }
 }

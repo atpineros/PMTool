@@ -16,12 +16,14 @@ namespace PMTool.Controllers
     public class ProjectsController : Controller
     {
         private readonly DataApi _api = new DataApi();
-        
-        public async Task<IActionResult> Index()
+
+        public IActionResult Index()
         {
-           
-            ProjectViewViewModel projectViewViewModel = new ProjectViewViewModel();
-            projectViewViewModel.Projects = GetAllProjects().Result.Projects;
+
+            ProjectViewViewModel projectViewViewModel = new ProjectViewViewModel
+            {
+                Projects = GetAllProjects().Result.Projects
+            };
             return View(projectViewViewModel);
         }
         [HttpPost]
@@ -38,6 +40,8 @@ namespace PMTool.Controllers
             return View("Index", projectViewViewModel);
         }
 
+
+        //should combine these methods later in one large query
         public async Task<ProjectViewViewModel> GetAllProjects()
         {
             HttpClient client = _api.Initial();
@@ -55,6 +59,7 @@ namespace PMTool.Controllers
             }
             return projectViewViewModel;
         }
+
         public async Task<Projects> GetProjectInfoByProjectID(int projectID)
         {
             HttpClient client = _api.Initial();
@@ -97,9 +102,51 @@ namespace PMTool.Controllers
         }
 
 
-        public IActionResult New()
+
+
+
+        public IActionResult NewView()
         {
+            _ = new ProjectNewViewModel
+            {
+                Users = GetAllUsers().Result.Users,
+                Roles = GetAllRoles().Result.Roles
+            };
             return View();
+        }
+        public async Task<ProjectNewViewModel> GetAllUsers()
+        {
+            HttpClient client = _api.Initial();
+            HttpResponseMessage res = await client.GetAsync("api/users");
+            var projectNewViewModel = new ProjectNewViewModel();
+            if (res.IsSuccessStatusCode)
+            {
+                var result = res.Content.ReadAsStringAsync().Result;
+                var userSelectList = JsonConvert.DeserializeObject<IEnumerable<User>>(result).Select(a => new SelectListItem
+                {
+                    Text = a.Fname + a.Lname,
+                    Value = a.UserId.ToString()
+                });
+                projectNewViewModel.Users = new SelectList(userSelectList, "Value", "Text");
+            }
+            return projectNewViewModel;
+        }
+        public async Task<ProjectNewViewModel> GetAllRoles()
+        {
+            HttpClient client = _api.Initial();
+            HttpResponseMessage res = await client.GetAsync("api/role");
+            var projectNewViewModel = new ProjectNewViewModel();
+            if (res.IsSuccessStatusCode)
+            {
+                var result = res.Content.ReadAsStringAsync().Result;
+                var roleSelectList = JsonConvert.DeserializeObject<IEnumerable<Role>>(result).Select(a => new SelectListItem
+                {
+                    Text = a.RoleName,
+                    Value = a.RoleId.ToString()
+                });
+                projectNewViewModel.Roles = new SelectList(roleSelectList, "Value", "Text");
+            }
+            return projectNewViewModel;
         }
     }
 }
