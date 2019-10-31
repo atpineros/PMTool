@@ -1,36 +1,25 @@
-﻿@model PMTool.Models.ViewModels.ProjectViewViewModel
-
+﻿
+@model PMTool.Models.ViewModels.ProjectViewViewModel
 @{
     ViewData["Title"] = "Project";
 }
 
 
-<ul class="nav nav-tabs" id="projectTabs">
-    <li class="nav-item">
-        <a class="nav-link active" asp-controller="Projects" id="viewTab" data-toggle="tab" asp-action="Index">View</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Projects" id="newTab" data-toggle="tab" asp-action="Index">New</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Projects" id="editTab" data-toggle="tab" asp-action="Index">Edit</a>
-    </li>
-</ul>
-<br>
+<partial name="~/Views/Projects/_ProjectNav.cshtml" />
+
+
 
 <div class="row">
     <form asp-controller="Projects" asp-action="Index" method="post">
         @if (Model.Projects != null)
         {
-        @Html.LabelFor(m => m.Projects, "Projects:")
-        @Html.DropDownListFor(m => m.SelectedProjectID, Model.Projects, "--Select Projects--")
-        @Html.ValidationMessageFor(model => model.Projects, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Projects, "Projects:")
+            @Html.DropDownListFor(m => m.SelectedProjectID, Model.Projects, "--Select Projects--")
+            @Html.ValidationMessageFor(model => model.Projects, "", new { @class = "text-danger" })
         }
         <input type="submit" name="name" value="Submit" />
     </form>
 </div>
-
-
 <div class="projectInfo">
     <div class="projectInfoTxt row">
         PROJECT INFORMATION
@@ -89,7 +78,7 @@
     <div class="row projectTeamTxt">
         PROJECT TEAM
     </div>
- 
+
     <div class="row">
         <table>
             <thead>
@@ -101,12 +90,12 @@
             <tbody>
                 @if (Model.Roles != null && Model.Users != null)
                 {
-                    @for(var i = 0; i<Model.Users.Count; i++)
-                    {                           
+                    @for (var i = 0; i < Model.Users.Count; i++)
+                    {
                         <tr>
                             <td>@Model.Users[i].Fname @Model.Users[i].Lname</td>
                             <td>@Model.Roles[i].RoleName</td>
-                        
+
                         </tr>
                     }
                 }
@@ -115,7 +104,7 @@
     </div>
 
     <div class="row projectRiskTxt">
-         PROJECT RISKS
+        PROJECT RISKS
     </div>
     <div class="row">
         <table>
@@ -129,7 +118,7 @@
             <tbody>
                 @if (Model.Risks != null)
                 {
-                    @foreach(var item in Model.Risks)
+                    @foreach (var item in Model.Risks)
                     {
                         <tr>
                             <td>Missing Title</td>
@@ -144,5 +133,5 @@
 </div>
 
 @section Scripts{
-        <script type="text/javascript" src="~/js/Projects.js"></script>
+    <script type="text/javascript" src="~/js/Projects.js"></script>
 }

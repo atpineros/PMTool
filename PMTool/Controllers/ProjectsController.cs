@@ -96,5 +96,10 @@ namespace PMTool.Controllers
             return result;
         }
 
+
+        public IActionResult New()
+        {
+            return View();
+        }
     }
 }
