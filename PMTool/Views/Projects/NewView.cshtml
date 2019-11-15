@@ -1,6 +1,10 @@
-﻿
+﻿@model PMTool.Models.ViewModels.ProjectNewViewModel
 @{
     ViewData["Title"] = "New";
+}
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/Projects.js"></script>
 }
 <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -14,3 +18,99 @@
     </li>
 </ul>
 <br>
+<form asp-controller="Projects" asp-action="NewView" method="post">
+    <div>
+        <div class="projectInformationTxt">
+            <div class="row">
+                <p>Please fill out the form below to create a new Project in the system</p>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    Title
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="projectTitle" value="" placeholder="Enter project title here" />
+                </div>
+                <div class="col-md-4">
+                    @*@if (Model.Users != null)
+                        {*@
+                    @Html.LabelFor(m => m.Users, "Project Manager:")
+                    @Html.DropDownListFor(m => m.SelectedUserID, Model.Users, "--Select Project Manager--")
+                    @Html.ValidationMessageFor(model => model.Users, "", new { @class = "text-danger" })
+                    @* } *@
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="projectDescriptionTxt">
+                    <p>Description:</p>
+                </div>
+            </div>
+            <div class="row">
+                <textarea class="col-lg-12" style="height:150px; resize:none;" name="projectDescription"></textarea>
+            </div>
+            <div class="row" style="margin-top:50px;">
+                <div class="projectDueDateTxt col-lg-2">
+                    Project Due Date
+                </div>
+                <div class="projectDueDate col-lg-3">
+                    <input type="date" name="dueDate" value="" />
+                </div>
+                <div class="projectEstimatedHoursTxt col-lg-2">
+                    Estimated Effort (hrs)
+                </div>
+                <div class="projectEstimatedHours col-lg-3">
+                    <input type="text" name="estimatedHours" value="" />
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="row projectTeamTxt">
+                Project Teams
+            </div>
+            <div class="row">
+                <div class="projectTeamDescription"> Please select on your and assigned their role for this project. Kepp in mind the new team member must have access to PMTool to get a project assignment</div>
+            </div>
+            <div class="row">
+                
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Users, "New Member:")
+                    @Html.DropDownListFor(m => m.SelectedMemeberID, Model.Users, "--Select New Memeber--")
+                    @Html.ValidationMessageFor(model => model.Users, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Roles, "Role:")
+                    @Html.DropDownListFor(m => m.SelectedRoleID, Model.Roles, "--Select Role--")
+                    @Html.ValidationMessageFor(model => model.Roles, "", new { @class = "text-danger" })
+                </div>
+                <button class="col-lg-1 col-sm-12 bg-primary" id="addToPreview" type="button">Add</button>
+            </div>
+            <div class="row">
+                <div class="teamPreviewTxt">
+                    Team Preview
+                </div>
+            </div>
+            <div class="row">
+                <table id="teamPreviewTable" class="table table-bordered tableOutside col-lg-10">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="projectRisksTxt">
+
+        </div>
+    </div>
+
+    <button type="submit" class="text-center"> Save </button>
+
+
+</form>

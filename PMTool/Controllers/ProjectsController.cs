@@ -107,13 +107,22 @@ namespace PMTool.Controllers
 
         public IActionResult NewView()
         {
-            _ = new ProjectNewViewModel
+            var projectNewViewModel = new ProjectNewViewModel
             {
                 Users = GetAllUsers().Result.Users,
                 Roles = GetAllRoles().Result.Roles
             };
-            return View();
+            return View(projectNewViewModel);
         }
+        [HttpPost]
+        public IActionResult NewView(ProjectNewViewModel projectNewViewModel, string projectTitle, string projectDescription, DateTime dueDate, string estimatedHours
+                                        
+            )
+        {
+
+            return View(projectNewViewModel);
+        }
+
         public async Task<ProjectNewViewModel> GetAllUsers()
         {
             HttpClient client = _api.Initial();
@@ -134,7 +143,7 @@ namespace PMTool.Controllers
         public async Task<ProjectNewViewModel> GetAllRoles()
         {
             HttpClient client = _api.Initial();
-            HttpResponseMessage res = await client.GetAsync("api/role");
+            HttpResponseMessage res = await client.GetAsync("api/rolesApi");
             var projectNewViewModel = new ProjectNewViewModel();
             if (res.IsSuccessStatusCode)
             {
