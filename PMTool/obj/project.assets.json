@@ -8183,24 +8183,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yli320\\.nuget\\packages\\": {},
+    "C:\\Users\\trail\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yli320\\Desktop\\MyStuff\\ProjectManagement\\PMTool\\PMTool\\PMTool.csproj",
+      "projectUniqueName": "C:\\Users\\trail\\Documents\\GitHub\\PMTool\\PMTool\\PMTool.csproj",
       "projectName": "PMTool",
-      "projectPath": "C:\\Users\\yli320\\Desktop\\MyStuff\\ProjectManagement\\PMTool\\PMTool\\PMTool.csproj",
-      "packagesPath": "C:\\Users\\yli320\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yli320\\Desktop\\MyStuff\\ProjectManagement\\PMTool\\PMTool\\obj\\",
+      "projectPath": "C:\\Users\\trail\\Documents\\GitHub\\PMTool\\PMTool\\PMTool.csproj",
+      "packagesPath": "C:\\Users\\trail\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\trail\\Documents\\GitHub\\PMTool\\PMTool\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\yli320\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\trail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"

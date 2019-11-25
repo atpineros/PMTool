@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProcedureTest.Models.spReportFinal>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Reporting";
+}
+
+  
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active">View</a>
+        </li>
+    </ul>
+
+    <pre>
+    </pre>
+
+
+
+<div class="activeProjectTxt">
+    <h5>ACTIVE REPORTS</h5>
+</div>
+
+<style type="text/css">
+    @@media only screen and (min-width: 900px) {
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        th {
+            height: 50px;
+            background-color: darkgray;
+            color: white;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        tr {
+            height: 30px;
+        }
+
+            tr:nth-child(even) {
+                background-color: #f2f4f5;
+            }
+
+        td {
+            font-size: 12px;
+            white-space: nowrap;
+        }
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <table>
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Requirement Description</th>
+                    <th>Total Effort</th>
+                    <th>Role Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@item.PrjName</td>
+                        <td>@item.ReqDescription</td>
+                        <td>@item.TotalEffort</td>
+                        <td>@item.RoleName</td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>  
