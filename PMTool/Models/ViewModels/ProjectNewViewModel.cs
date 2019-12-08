@@ -8,9 +8,9 @@ namespace PMTool.Models.ViewModels
 {
     public class ProjectNewViewModel
     {
-        public string SelectedUserID { get; set; }
-        public string SelectedRoleID { get; set; }
-        public string SelectedMemeberID { get; set; }
+        public IEnumerable<SelectListItem> SelectedUserID { get; set; }
+        public IEnumerable<SelectListItem> SelectedRoleID { get; set; }
+        public IEnumerable<SelectListItem> SelectedMemeberID { get; set; }
         public Projects Project { get; set; }
         public List<User> ListOfUsers { get; set; }
         public List<Risks> Risks { get; set; }

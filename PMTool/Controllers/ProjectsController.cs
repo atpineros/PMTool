@@ -133,7 +133,7 @@ namespace PMTool.Controllers
                 var result = res.Content.ReadAsStringAsync().Result;
                 var userSelectList = JsonConvert.DeserializeObject<IEnumerable<User>>(result).Select(a => new SelectListItem
                 {
-                    Text = a.Fname + a.Lname,
+                    Text = a.Fname + " " + a.Lname,
                     Value = a.UserId.ToString()
                 });
                 projectNewViewModel.Users = new SelectList(userSelectList, "Value", "Text");

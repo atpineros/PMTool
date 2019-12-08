@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ProcedureTest.Models;
+using PMTool.Models.ViewModels;
 
 namespace PMTool.Models
 {
@@ -17,6 +18,7 @@ namespace PMTool.Models
         }
         public virtual DbSet<spReportFinal> spReportFinal { get; set; }
         public virtual DbSet<Assignments> Assignments { get; set; }
+        public virtual DbSet<Requirement> Requirement{ get; set; }
         public virtual DbSet<Effort> Effort { get; set; }
         public virtual DbSet<Projects> Projects { get; set; }
         public virtual DbSet<Requirements> Requirements { get; set; }
@@ -231,5 +233,7 @@ namespace PMTool.Models
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<ProcedureTest.Models.spReportFinal> spReportFinal_1 { get; set; }
+
+       // public DbSet<PMTool.Models.ViewModels.spTaskInfo> spTaskInfo { get; set; }
     }
 }
